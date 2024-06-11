@@ -1,10 +1,16 @@
 import React from "react";
+import QuestionItem from "./QuestionItem";
 
-function QuestionList() {
+function QuestionList({fetchedQuestions, updateApp}) {
+  function onUpdate(updatedQuestion){
+    updateApp(updatedQuestion)
+  }
+
+  const questionListElement = fetchedQuestions.map((element)=><QuestionItem question={element} onUpdate={onUpdate}/>)
   return (
     <section>
       <h1>Quiz Questions</h1>
-      <ul>{/* display QuestionItem components here after fetching */}</ul>
+      <ul>{questionListElement}</ul>
     </section>
   );
 }
